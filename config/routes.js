@@ -41,7 +41,6 @@ function login(req, res) {
     .then(user => {
       if (bcrypt.compareSync(req.body.password, user.password)) {
         const token = generateToken(user);
-
         res.status(200).json({ message: `Welcome ${user.username}`, token });
       } else {
         res.status(400).json({ message: 'invalid credentials' });
